@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {# Header #}
+    {% include 'partials/_header.html.twig' %}
+
+    {# Main Content #}
+    <main class="main-content">
+        <div class="container-fluid py-4">
+            {% block content %}{% endblock %}
+        </div>
+    </main>
+
+    {# Footer #}
+    {% include 'partials/_footer.html.twig' %}
+{% endblock %}

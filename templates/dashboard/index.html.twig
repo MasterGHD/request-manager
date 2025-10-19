@@ -1,0 +1,150 @@
+{% extends 'layouts/one_column.html.twig' %}
+
+{% block title %}Dashboard - Order Manager{% endblock %}
+
+{% block content %}
+    <div class="row mb-4">
+        <div class="col">
+            <h1 class="display-5 fw-bold">
+                {{ ux_icon('heroicons:home', {width: '32', height: '32', class: 'me-2'}) }}
+                Dashboard
+            </h1>
+            <p class="text-muted">Welcome to the order management panel</p>
+        </div>
+    </div>
+
+    {# Statistics Cards #}
+    <div class="row mb-4">
+        <div class="col-md-3 mb-3">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <p class="text-muted mb-1">Total Orders</p>
+                            <h3 class="fw-bold mb-0">1,234</h3>
+                        </div>
+                        <div class="bg-primary bg-opacity-10 p-3 rounded">
+                            {{ ux_icon('heroicons:shopping-bag', {width: '32', height: '32', class: 'text-primary'}) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 mb-3">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <p class="text-muted mb-1">Customers</p>
+                            <h3 class="fw-bold mb-0">567</h3>
+                        </div>
+                        <div class="bg-success bg-opacity-10 p-3 rounded">
+                            {{ ux_icon('heroicons:users', {width: '32', height: '32', class: 'text-success'}) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 mb-3">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <p class="text-muted mb-1">Revenue</p>
+                            <h3 class="fw-bold mb-0">$45,678</h3>
+                        </div>
+                        <div class="bg-warning bg-opacity-10 p-3 rounded">
+                            {{ ux_icon('heroicons:currency-dollar', {width: '32', height: '32', class: 'text-warning'}) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 mb-3">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <p class="text-muted mb-1">Pending</p>
+                            <h3 class="fw-bold mb-0">23</h3>
+                        </div>
+                        <div class="bg-danger bg-opacity-10 p-3 rounded">
+                            {{ ux_icon('heroicons:clock', {width: '32', height: '32', class: 'text-danger'}) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {# Recent Orders Table #}
+    <div class="row">
+        <div class="col-12">
+            <div class="card shadow-sm">
+                <div class="card-header bg-white">
+                    <h5 class="mb-0 fw-bold">
+                        {{ ux_icon('heroicons:list-bullet', {width: '20', height: '20', class: 'me-2'}) }}
+                        Recent Orders
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>{{ ux_icon('heroicons:hashtag', {width: '16', height: '16'}) }} ID</th>
+                                    <th>Customer</th>
+                                    <th>Date</th>
+                                    <th>Total</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>#1001</td>
+                                    <td>John Doe</td>
+                                    <td>10/19/2025</td>
+                                    <td>$125.00</td>
+                                    <td><span class="badge bg-success">Completed</span></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-primary">
+                                            {{ ux_icon('heroicons:eye', {width: '16', height: '16'}) }}
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#1002</td>
+                                    <td>Jane Smith</td>
+                                    <td>10/19/2025</td>
+                                    <td>$89.50</td>
+                                    <td><span class="badge bg-warning">Pending</span></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-primary">
+                                            {{ ux_icon('heroicons:eye', {width: '16', height: '16'}) }}
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#1003</td>
+                                    <td>Mike Johnson</td>
+                                    <td>10/18/2025</td>
+                                    <td>$340.00</td>
+                                    <td><span class="badge bg-success">Completed</span></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-primary">
+                                            {{ ux_icon('heroicons:eye', {width: '16', height: '16'}) }}
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

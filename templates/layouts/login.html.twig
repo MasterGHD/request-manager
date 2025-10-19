@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% block page_title %}Login{% endblock %} - Order Manager{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        /* Fix autofill styling for MDB floating labels */
+        .form-outline input:-webkit-autofill,
+        .form-outline input:-webkit-autofill:hover,
+        .form-outline input:-webkit-autofill:focus {
+            -webkit-box-shadow: 0 0 0 1000px white inset !important;
+            box-shadow: 0 0 0 1000px white inset !important;
+            -webkit-text-fill-color: #495057 !important;
+        }
+
+        /* Ensure label stays up when input has value (autofill or manual) */
+        .form-outline input:not(:placeholder-shown) ~ label,
+        .form-outline input:-webkit-autofill ~ label,
+        .form-outline.form-notch-active label {
+            transform: translateY(-1rem) translateY(0.1rem) scale(0.8);
+            background-color: white;
+            padding-left: 0.25rem;
+            padding-right: 0.25rem;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div class="login-layout min-vh-100 d-flex align-items-center bg-light">
+        {% block login_content %}{% endblock %}
+    </div>
+{% endblock %}

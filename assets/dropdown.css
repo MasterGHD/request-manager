@@ -1,0 +1,34 @@
+.dropdown-menu {
+    margin: 0;
+    animation-duration: 200ms;
+}
+
+.dropdown-menu.animate__fadeIn {
+    animation-name: dropdownFadeIn;
+}
+
+.dropdown-menu.animate__fadeOut {
+    animation-name: dropdownFadeOut;
+}
+
+@keyframes dropdownFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes dropdownFadeOut {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+}

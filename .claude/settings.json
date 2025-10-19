@@ -1,0 +1,14 @@
+{
+  "coding_standards": {
+    "no_emojis_in_code": true,
+    "description": "Do not add emojis to any code files"
+  },
+  "symfony": {
+    "command_prefix": "symfony ",
+    "description": "All Symfony commands must start with 'symfony ' prefix (e.g., 'symfony console', 'symfony composer')"
+  },
+  "documentation": {
+    "auto_generate": false,
+    "description": "Do not create or proactively generate any markdown (*.md) or documentation files unless explicitly requested"
+  }
+}

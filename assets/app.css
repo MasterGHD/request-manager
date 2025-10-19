@@ -1,0 +1,563 @@
+/* ========================================
+   CSS Variables for Theme Support
+   ======================================== */
+
+:root {
+    /* Light Theme Colors */
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8f9fa;
+    --bg-tertiary: #e9ecef;
+
+    --text-primary: #212529;
+    --text-secondary: #6c757d;
+    --text-muted: #adb5bd;
+
+    --border-color: #dee2e6;
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
+    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.2);
+
+    --dropdown-bg: #ffffff;
+    --dropdown-hover: #f8f9fa;
+    --dropdown-text: #212529;
+
+    --card-bg: #ffffff;
+    --card-border: #dee2e6;
+
+    --input-bg: #ffffff;
+    --input-border: #ced4da;
+    --input-focus: #0d6efd;
+
+    --danger-bg: #fff5f5;
+    --danger-text: #dc3545;
+
+    --success-bg: #f0fdf4;
+    --success-text: #198754;
+
+    --warning-bg: #fffbeb;
+    --warning-text: #ffc107;
+
+    --info-bg: #eff6ff;
+    --info-text: #0dcaf0;
+}
+
+/* Dark Theme */
+[data-theme="dark"] {
+    --bg-primary: #1a1d23;
+    --bg-secondary: #2d3239;
+    --bg-tertiary: #3f4550;
+
+    --text-primary: #e9ecef;
+    --text-secondary: #adb5bd;
+    --text-muted: #6c757d;
+
+    --border-color: #495057;
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
+
+    --dropdown-bg: #2d3239;
+    --dropdown-hover: #3f4550;
+    --dropdown-text: #e9ecef;
+
+    --card-bg: #2d3239;
+    --card-border: #495057;
+
+    --input-bg: #2d3239;
+    --input-border: #495057;
+    --input-focus: #4dabf7;
+
+    --danger-bg: #3d1f1f;
+    --danger-text: #ff6b6b;
+
+    --success-bg: #1f3d2f;
+    --success-text: #51cf66;
+
+    --warning-bg: #3d3520;
+    --warning-text: #ffd43b;
+
+    --info-bg: #1f2d3d;
+    --info-text: #4dabf7;
+}
+
+/* ========================================
+   Base Styles
+   ======================================== */
+
+* {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+body {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+}
+
+.example-wrapper {
+    background-color: var(--bg-primary);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: var(--shadow-sm);
+}
+
+/* ========================================
+   Cards
+   ======================================== */
+
+.card {
+    background-color: var(--card-bg);
+    border-color: var(--card-border);
+    color: var(--text-primary);
+}
+
+.card-header {
+    background-color: var(--bg-secondary);
+    border-bottom-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+.card-body {
+    color: var(--text-primary);
+}
+
+.card-title {
+    color: var(--text-primary);
+}
+
+.card-text {
+    color: var(--text-secondary);
+}
+
+/* ========================================
+   Dropdown Menu Enhancements
+   ======================================== */
+
+.dropdown-menu {
+    background-color: var(--dropdown-bg);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-md);
+    border-radius: 8px;
+    padding: 0.5rem 0;
+    margin-top: 0.5rem;
+}
+
+.dropdown-menu-lg {
+    min-width: 280px;
+}
+
+.dropdown-item {
+    padding: 0.5rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.2s ease;
+    color: var(--dropdown-text);
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+    background-color: var(--dropdown-hover);
+    color: var(--dropdown-text);
+    padding-left: 1.75rem;
+}
+
+.dropdown-item.active {
+    background-color: var(--input-focus);
+    color: #ffffff;
+}
+
+.dropdown-item.text-danger {
+    color: var(--danger-text) !important;
+}
+
+.dropdown-item.text-danger:hover {
+    background-color: var(--danger-bg);
+    color: var(--danger-text) !important;
+}
+
+.dropdown-divider {
+    margin: 0.5rem 0;
+    border-top-color: var(--border-color);
+}
+
+.dropdown-header {
+    padding: 0.5rem 1.5rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* ========================================
+   Alerts
+   ======================================== */
+
+.alert {
+    border-color: var(--border-color);
+}
+
+.alert-primary {
+    background-color: var(--info-bg);
+    color: var(--info-text);
+    border-color: var(--info-text);
+}
+
+.alert-success {
+    background-color: var(--success-bg);
+    color: var(--success-text);
+    border-color: var(--success-text);
+}
+
+.alert-warning {
+    background-color: var(--warning-bg);
+    color: var(--warning-text);
+    border-color: var(--warning-text);
+}
+
+.alert-danger {
+    background-color: var(--danger-bg);
+    color: var(--danger-text);
+    border-color: var(--danger-text);
+}
+
+/* ========================================
+   Forms
+   ======================================== */
+
+.form-control,
+.form-select {
+    background-color: var(--input-bg);
+    border-color: var(--input-border);
+    color: var(--text-primary);
+}
+
+.form-control:focus,
+.form-select:focus {
+    background-color: var(--input-bg);
+    border-color: var(--input-focus);
+    color: var(--text-primary);
+}
+
+.form-label {
+    color: var(--text-primary);
+}
+
+.form-check-label {
+    color: var(--text-primary);
+}
+
+/* ========================================
+   Tables
+   ======================================== */
+
+.table {
+    color: var(--text-primary);
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) > * {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+}
+
+.table-hover > tbody > tr:hover > * {
+    background-color: var(--dropdown-hover);
+    color: var(--text-primary);
+}
+
+.table-dark {
+    background-color: var(--bg-tertiary);
+    color: var(--text-primary);
+}
+
+/* ========================================
+   List Groups
+   ======================================== */
+
+.list-group-item {
+    background-color: var(--bg-primary);
+    border-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+.list-group-item:hover {
+    background-color: var(--dropdown-hover);
+}
+
+.list-group-item.active {
+    background-color: var(--input-focus);
+    border-color: var(--input-focus);
+}
+
+.list-group-item.disabled {
+    color: var(--text-muted);
+    background-color: var(--bg-secondary);
+}
+
+/* ========================================
+   Modals
+   ======================================== */
+
+.modal-content {
+    background-color: var(--bg-primary);
+    border-color: var(--border-color);
+}
+
+.modal-header {
+    border-bottom-color: var(--border-color);
+}
+
+.modal-title {
+    color: var(--text-primary);
+}
+
+.modal-body {
+    color: var(--text-primary);
+}
+
+.modal-footer {
+    border-top-color: var(--border-color);
+}
+
+/* ========================================
+   Navbar Specific
+   ======================================== */
+
+.navbar-light {
+    background-color: var(--bg-primary) !important;
+}
+
+.navbar-light .navbar-brand,
+.navbar-light .navbar-nav .nav-link {
+    color: var(--text-primary);
+}
+
+.navbar-light .navbar-nav .nav-link:hover,
+.navbar-light .navbar-nav .nav-link:focus {
+    color: var(--input-focus);
+}
+
+/* ========================================
+   Tabs & Pills
+   ======================================== */
+
+.nav-tabs {
+    border-bottom-color: var(--border-color);
+}
+
+.nav-tabs .nav-link {
+    color: var(--text-secondary);
+}
+
+.nav-tabs .nav-link:hover,
+.nav-tabs .nav-link:focus {
+    border-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+.nav-tabs .nav-link.active {
+    background-color: var(--bg-primary);
+    border-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+.nav-pills .nav-link {
+    color: var(--text-secondary);
+}
+
+.nav-pills .nav-link:hover {
+    color: var(--text-primary);
+    background-color: var(--dropdown-hover);
+}
+
+.tab-content {
+    color: var(--text-primary);
+}
+
+/* ========================================
+   Breadcrumbs
+   ======================================== */
+
+.breadcrumb {
+    background-color: var(--bg-secondary);
+}
+
+.breadcrumb-item {
+    color: var(--text-secondary);
+}
+
+.breadcrumb-item a {
+    color: var(--input-focus);
+}
+
+.breadcrumb-item.active {
+    color: var(--text-primary);
+}
+
+/* ========================================
+   Notification Badge
+   ======================================== */
+
+.badge-notification {
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    font-size: 0.65rem;
+    padding: 0.25em 0.5em;
+}
+
+/* ========================================
+   Icon Alignment
+   ======================================== */
+
+.dropdown-item svg,
+.dropdown-header svg,
+.nav-link svg {
+    flex-shrink: 0;
+}
+
+/* ========================================
+   Animations
+   ======================================== */
+
+.dropdown-menu {
+    animation: fadeInDown 0.3s ease-in-out;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ========================================
+   Theme Toggle Button
+   ======================================== */
+
+.theme-toggle {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    border: 2px solid var(--border-color);
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    box-shadow: var(--shadow-md);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1);
+    box-shadow: var(--shadow-lg);
+}
+
+.theme-toggle svg {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+/* ========================================
+   Accordion
+   ======================================== */
+
+.accordion-item {
+    background-color: var(--bg-primary);
+    border-color: var(--border-color);
+}
+
+.accordion-button {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+}
+
+.accordion-button:focus {
+    border-color: var(--input-focus);
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+.accordion-body {
+    color: var(--text-primary);
+}
+
+/* ========================================
+   Pagination
+   ======================================== */
+
+.page-link {
+    background-color: var(--bg-primary);
+    border-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+.page-link:hover {
+    background-color: var(--dropdown-hover);
+    border-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+.page-item.active .page-link {
+    background-color: var(--input-focus);
+    border-color: var(--input-focus);
+}
+
+.page-item.disabled .page-link {
+    background-color: var(--bg-secondary);
+    border-color: var(--border-color);
+    color: var(--text-muted);
+}
+
+/* ========================================
+   Toast
+   ======================================== */
+
+.toast {
+    background-color: var(--bg-primary);
+    border-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+.toast-header {
+    background-color: var(--bg-secondary);
+    border-bottom-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+.toast-body {
+    color: var(--text-primary);
+}
+
+/* ========================================
+   Responsive Adjustments
+   ======================================== */
+
+@media (max-width: 768px) {
+    .theme-toggle {
+        bottom: 1rem;
+        right: 1rem;
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+
+    .theme-toggle svg {
+        width: 1.25rem;
+        height: 1.25rem;
+    }
+}

@@ -1,0 +1,196 @@
+{% extends 'layouts/login.html.twig' %}
+
+{% block page_title %}Sign In{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize all form outline inputs
+            document.querySelectorAll('.form-outline').forEach((formOutline) => {
+                new mdb.Input(formOutline).init();
+            });
+
+            // Handle autofill for floating labels
+            const inputs = document.querySelectorAll('.form-outline input');
+
+            // Function to check and update label position
+            function updateLabel(input) {
+                const formOutline = input.closest('.form-outline');
+                if (input.value !== '' || document.activeElement === input) {
+                    formOutline.classList.add('form-notch-active');
+                } else {
+                    formOutline.classList.remove('form-notch-active');
+                }
+            }
+
+            // Check all inputs on page load
+            inputs.forEach(input => {
+                updateLabel(input);
+
+                // Listen for input changes
+                input.addEventListener('input', () => updateLabel(input));
+                input.addEventListener('focus', () => updateLabel(input));
+                input.addEventListener('blur', () => updateLabel(input));
+            });
+
+            // Handle browser autofill with a delay
+            setTimeout(() => {
+                inputs.forEach(input => {
+                    if (input.value !== '') {
+                        updateLabel(input);
+                    }
+                });
+            }, 100);
+
+            // Also check after animation frame (for slower autofills)
+            requestAnimationFrame(() => {
+                setTimeout(() => {
+                    inputs.forEach(input => {
+                        if (input.value !== '') {
+                            updateLabel(input);
+                        }
+                    });
+                }, 500);
+            });
+        });
+    </script>
+{% endblock %}
+
+{% block login_content %}
+    <div class="container-fluid p-0">
+        <div class="row g-0 min-vh-100">
+            {# Left side - Image (50%) #}
+            <div class="col-lg-6 d-none d-lg-block">
+                <div class="position-relative h-100" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                    <div class="position-absolute top-50 start-50 translate-middle text-center text-white px-4">
+                        <div class="mb-4">
+                            {{ ux_icon('heroicons:shopping-cart', {width: '80', height: '80', class: 'mb-3'}) }}
+                        </div>
+                        <h1 class="display-4 fw-bold mb-3">Order Manager</h1>
+                        <p class="lead mb-4">
+                            Manage your orders and customers efficiently
+                        </p>
+                        <div class="d-flex justify-content-center gap-4 mt-4">
+                            <div class="text-center">
+                                {{ ux_icon('heroicons:check-circle', {width: '40', height: '40', class: 'mb-2'}) }}
+                                <p class="small">Simple Management</p>
+                            </div>
+                            <div class="text-center">
+                                {{ ux_icon('heroicons:chart-bar', {width: '40', height: '40', class: 'mb-2'}) }}
+                                <p class="small">Detailed Reports</p>
+                            </div>
+                            <div class="text-center">
+                                {{ ux_icon('heroicons:shield-check', {width: '40', height: '40', class: 'mb-2'}) }}
+                                <p class="small">100% Secure</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {# Right side - Login Form (50%) #}
+            <div class="col-lg-6 d-flex align-items-center justify-content-center bg-white">
+                <div class="w-100 px-4 px-md-5" style="max-width: 500px;">
+                    {# Logo for mobile #}
+                    <div class="text-center mb-4 d-lg-none">
+                        {{ ux_icon('heroicons:shopping-cart', {width: '60', height: '60', class: 'text-primary mb-2'}) }}
+                        <h2 class="fw-bold">Order Manager</h2>
+                    </div>
+
+                    {# Login Form #}
+                    <div class="text-center mb-5">
+                        <h3 class="fw-bold mb-2">Welcome Back</h3>
+                        <p class="text-muted">Enter your credentials to continue</p>
+                    </div>
+
+                    {% if error %}
+                        <div class="alert alert-danger d-flex align-items-center" role="alert">
+                            {{ ux_icon('heroicons:exclamation-triangle', {width: '20', height: '20', class: 'me-2'}) }}
+                            <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                        </div>
+                    {% endif %}
+
+                    <form method="post" action="{{ path('app_login') }}">
+                        {# Email Field #}
+                        <div class="form-outline mb-4">
+                            <input type="email"
+                                   id="inputEmail"
+                                   name="_username"
+                                   class="form-control form-control-lg"
+                                   placeholder=" "
+                                   value="{{ last_username }}"
+                                   required
+                                   autofocus>
+                            <label class="form-label" for="inputEmail">
+                                {{ ux_icon('heroicons:envelope', {width: '18', height: '18', class: 'me-1'}) }}
+                                Email Address
+                            </label>
+                        </div>
+
+                        {# Password Field #}
+                        <div class="form-outline mb-4">
+                            <input type="password"
+                                   id="inputPassword"
+                                   name="_password"
+                                   class="form-control form-control-lg"
+                                   placeholder=" "
+                                   required>
+                            <label class="form-label" for="inputPassword">
+                                {{ ux_icon('heroicons:lock-closed', {width: '18', height: '18', class: 'me-1'}) }}
+                                Password
+                            </label>
+                        </div>
+
+                        {# Remember Me & Forgot Password #}
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <div class="form-check">
+                                <input class="form-check-input"
+                                       type="checkbox"
+                                       value=""
+                                       id="rememberMe"
+                                       name="_remember_me">
+                                <label class="form-check-label" for="rememberMe">
+                                    Remember Me
+                                </label>
+                            </div>
+                            <a href="#" class="text-primary text-decoration-none">
+                                Forgot Password?
+                            </a>
+                        </div>
+
+                        {# CSRF Token #}
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+                        {# Submit Button #}
+                        <button class="btn btn-primary btn-lg btn-block w-100 mb-4" type="submit">
+                            {{ ux_icon('heroicons:arrow-right-on-rectangle', {width: '20', height: '20', class: 'me-2'}) }}
+                            Sign In
+                        </button>
+
+                        {# Divider #}
+                        <div class="divider d-flex align-items-center my-4">
+                            <p class="text-center fw-bold mx-3 mb-0 text-muted">OR</p>
+                        </div>
+
+                        {# Social Login Buttons #}
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-outline-dark btn-lg" type="button">
+                                {{ ux_icon('heroicons:finger-print', {width: '20', height: '20', class: 'me-2'}) }}
+                                Sign in with Google
+                            </button>
+                        </div>
+
+                        {# Register Link #}
+                        <div class="text-center mt-4">
+                            <p class="text-muted">
+                                Don't have an account?
+                                <a href="#" class="text-primary fw-bold text-decoration-none">Sign up here</a>
+                            </p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

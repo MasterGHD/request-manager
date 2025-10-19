@@ -1,0 +1,57 @@
+http:
+    document_root: public/
+    passthru: index.php
+    port: 8000
+    preferred_port: 8000
+    p13n_proxy: true
+    daemon: true
+    allow_http: false
+    no_tls: false
+
+proxy:
+    domains:
+        - gestorpedidos.local
+    tls:
+        cert_file: '%kernel.project_dir%/config/local/ssl/cert.pem'
+        key_file: '%kernel.project_dir%/config/local/ssl/key.pem'
+
+workers:
+    messenger:
+        cmd: ['symfony', 'console', 'messenger:consume', 'async', '--time-limit=3600']
+        watch:
+            - config
+            - src
+            - templates
+            - vendor
+    npm:
+        cmd: ['npm', 'run', 'dev', '--watch']
+        cwd: '%kernel.project_dir%'
+        watch:
+            - assets
+            - package.json
+            - vite.config.js
+
+php:
+    version: 8.4
+    extensions:
+        - intl
+        - pdo_mysql
+        - zip
+        - gd
+        - curl
+        - mbstring
+        - xml
+        - opcache
+    ini:
+        memory_limit: 512M
+        max_execution_time: 300
+        upload_max_filesize: 64M
+        post_max_size: 64M
+        opcache.enable: 1
+        opcache.memory_consumption: 256
+        opcache.interned_strings_buffer: 16
+        opcache.max_accelerated_files: 20000
+        opcache.validate_timestamps: 1
+        opcache.revalidate_freq: 0
+        realpath_cache_size: 4096K
+        realpath_cache_ttl: 600

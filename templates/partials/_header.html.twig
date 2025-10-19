@@ -1,0 +1,60 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+    <div class="container-fluid">
+        <a class="navbar-brand fw-bold d-flex align-items-center" href="/">
+            {{ ux_icon('heroicons:shopping-cart', {width: '28', height: '28', class: 'me-2'}) }}
+            Order Manager
+        </a>
+        <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link active d-flex align-items-center" aria-current="page" href="/">
+                        {{ ux_icon('heroicons:home', {width: '20', height: '20', class: 'me-1'}) }}
+                        Home
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center" href="#">
+                        {{ ux_icon('heroicons:shopping-bag', {width: '20', height: '20', class: 'me-1'}) }}
+                        Orders
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center" href="#">
+                        {{ ux_icon('heroicons:users', {width: '20', height: '20', class: 'me-1'}) }}
+                        Customers
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="navbarDropdown" role="button"
+                       data-mdb-toggle="dropdown" aria-expanded="false">
+                        {{ ux_icon('heroicons:user-circle', {width: '20', height: '20', class: 'me-1'}) }}
+                        {% if app.user %}
+                            {{ app.user.email }}
+                        {% else %}
+                            User
+                        {% endif %}
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item d-flex align-items-center" href="#">
+                            {{ ux_icon('heroicons:user', {width: '16', height: '16', class: 'me-2'}) }}
+                            My Profile
+                        </a></li>
+                        <li><a class="dropdown-item d-flex align-items-center" href="#">
+                            {{ ux_icon('heroicons:cog-6-tooth', {width: '16', height: '16', class: 'me-2'}) }}
+                            Settings
+                        </a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item d-flex align-items-center text-danger" href="{{ path('app_logout') }}">
+                            {{ ux_icon('heroicons:arrow-right-on-rectangle', {width: '16', height: '16', class: 'me-2'}) }}
+                            Sign Out
+                        </a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

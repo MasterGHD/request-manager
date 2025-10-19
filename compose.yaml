@@ -1,0 +1,69 @@
+
+services:
+###> doctrine/doctrine-bundle ###
+  database:
+    image: mysql:${MYSQL_VERSION:-8.0}
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-app}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-!ChangeMe!}
+      MYSQL_USER: ${MYSQL_USER:-app}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-!ChangeMe!}
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${MYSQL_ROOT_PASSWORD:-!ChangeMe!}"]
+      timeout: 5s
+      retries: 5
+      start_period: 60s
+    ports:
+      - "${MYSQL_PORT:-33377}:3306"
+    volumes:
+      - database_data:/var/lib/mysql:rw
+      # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
+      # - ./docker/db/data:/var/lib/mysql:rw
+    command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+###< doctrine/doctrine-bundle ###
+
+###> symfony/messenger ###
+  rabbitmq:
+    image: rabbitmq:${RABBITMQ_VERSION:-3.13-management-alpine}
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_USER:-app}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASSWORD:-!ChangeMe!}
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "check_port_connectivity"]
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    ports:
+      - "${RABBITMQ_PORT:-5672}:5672"
+      - "${RABBITMQ_MANAGEMENT_PORT:-15672}:15672"
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq:rw
+###< symfony/messenger ###
+
+###> symfony/cache ###
+  redis:
+    image: redis:${REDIS_VERSION:-7-alpine}
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    ports:
+      - "${REDIS_PORT:-6379}:6379"
+    volumes:
+      - redis_data:/data:rw
+    command: redis-server --appendonly yes
+###< symfony/cache ###
+
+volumes:
+###> doctrine/doctrine-bundle ###
+  database_data:
+###< doctrine/doctrine-bundle ###
+
+###> symfony/messenger ###
+  rabbitmq_data:
+###< symfony/messenger ###
+
+###> symfony/cache ###
+  redis_data:
+###< symfony/cache ###

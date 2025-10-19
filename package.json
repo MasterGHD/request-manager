@@ -1,0 +1,30 @@
+{
+  "private": true,
+  "scripts": {
+    "dev-server": "encore dev-server",
+    "dev": "encore dev",
+    "watch": "encore dev --watch",
+    "build": "encore production --progress",
+    "lint": "eslint assets --ext .js",
+    "lint:fix": "eslint assets --ext .js --fix"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.28.4",
+    "@babel/preset-env": "^7.28.3",
+    "@symfony/webpack-encore": "^5.2.0",
+    "compression-webpack-plugin": "^11.1.0",
+    "core-js": "^3.46.0",
+    "eslint": "^8.56.0",
+    "mdb-ui-kit": "^9.2.0",
+    "regenerator-runtime": "^0.14.1",
+    "sass": "^1.93.2",
+    "sass-loader": "^16.0.5",
+    "webpack": "^5.102.1",
+    "webpack-cli": "^6.0.1",
+    "webpack-notifier": "^1.15.0"
+  },
+  "dependencies": {
+    "@popperjs/core": "^2.11.8",
+    "mdb-ui-kit": "^7.1.0"
+  }
+}
