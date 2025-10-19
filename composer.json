@@ -71,7 +71,8 @@
             "requirements-checker": "script"
         },
         "post-install-cmd": [
-            "@auto-scripts"
+            "@auto-scripts",
+            "@set-app-secret"
         ],
         "post-update-cmd": [
             "@auto-scripts"
@@ -111,6 +112,9 @@
             "@cs-fixer",
             "@rector",
             "@phpunit"
+        ],
+        "set-app-secret": [
+            "@php bin/console secrets:set APP_SECRET --random=32"
         ]
     },
     "conflict": {
