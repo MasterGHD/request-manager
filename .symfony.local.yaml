@@ -10,7 +10,7 @@ http:
 
 proxy:
     domains:
-        - gestorpedidos.local
+        - request-manager.wip.local
     tls:
         cert_file: '%kernel.project_dir%/config/local/ssl/cert.pem'
         key_file: '%kernel.project_dir%/config/local/ssl/key.pem'

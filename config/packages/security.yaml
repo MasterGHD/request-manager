@@ -14,8 +14,10 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
+
             lazy: true
             provider: app_user_provider
+            entry_point: form_login
 
             # Form login configuration
             form_login:
@@ -29,6 +31,9 @@ security:
                 path: app_logout
                 target: app_login
 
+            custom_authenticators:
+                - App\Security\GoogleAuthenticator
+
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
 
@@ -40,6 +45,7 @@ security:
     access_control:
         # Allow access to login page without authentication
         - { path: ^/auth/login, roles: PUBLIC_ACCESS }
+        - { path: ^/connect/google, roles: PUBLIC_ACCESS }
         - { path: ^/test/components, roles: PUBLIC_ACCESS }
         # Require authentication for all other pages
         - { path: ^/, roles: ROLE_USER }

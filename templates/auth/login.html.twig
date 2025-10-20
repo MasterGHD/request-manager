@@ -169,16 +169,16 @@
                         </button>
 
                         {# Divider #}
-                        <div class="divider d-flex align-items-center my-4">
+                        <div class="divider d-flex align-items-center justify-content-center my-4">
                             <p class="text-center fw-bold mx-3 mb-0 text-muted">OR</p>
                         </div>
 
                         {# Social Login Buttons #}
                         <div class="d-grid gap-2">
-                            <button class="btn btn-outline-dark btn-lg" type="button">
+                            <a class="btn btn-outline-dark btn-lg" role="button" href="{{ path('connect_google') }}">
                                 {{ ux_icon('heroicons:finger-print', {width: '20', height: '20', class: 'me-2'}) }}
                                 Sign in with Google
-                            </button>
+                            </a>
                         </div>
 
                         {# Register Link #}
